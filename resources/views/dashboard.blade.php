@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="space-y-2">
             <p class="text-xs font-black uppercase tracking-[0.22em]">Period Overview</p>
-            <h1 class="text-3xl font-black uppercase sm:text-4xl">Control your cash flow</h1>
+            <h1 class="text-3xl font-black uppercase sm:text-4xl">Dashboard</h1>
         </div>
     </x-slot>
 
@@ -76,7 +76,7 @@
                     </div>
                 @empty
                     <div class="border-[4px] border-current bg-white px-4 py-4 text-sm font-black uppercase">
-                        Belum ada pengeluaran pada periode ini.
+                        Oops, belum ada pengeluaran nih
                     </div>
                 @endforelse
             </div>
@@ -118,7 +118,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="text-center text-sm font-black uppercase">Belum ada transaksi.
+                                <td colspan="5" class="text-center text-sm font-black uppercase">Belum ada transaksi
                                 </td>
                             </tr>
                         @endforelse

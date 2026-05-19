@@ -128,8 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
             ],
             language: {
-                emptyTable: 'Belum ada data.',
-                zeroRecords: 'Data tidak ditemukan.',
+                emptyTable: 'Belum ada data nih',
+                zeroRecords: 'Data tidak ditemukan',
                 search: 'Cari:',
                 lengthMenu: 'Show _MENU_',
                 info: '_START_-_END_ / _TOTAL_',

@@ -10,20 +10,22 @@
 
     <div class="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
         <section class="brutal-panel p-6">
-            <p class="text-xs font-black uppercase tracking-[0.22em]">Reminder Settings</p>
-            <h2 class="mt-2 text-3xl font-black uppercase">{{ $readonly ? 'Readonly Mode' : ($canManageReminder ? 'Gold Access Active' : 'Locked for Silver') }}</h2>
+            <p class="text-xs font-black uppercase tracking-[0.22em]">Fitur ini sedang dalam pengembangan, hehe</p>
+            {{-- <h2 class="mt-2 text-3xl font-black uppercase">
+                {{ $readonly ? 'Readonly Mode' : ($canManageReminder ? 'Gold Access Active' : 'Locked for Silver') }}
+            </h2> --}}
 
             @if ($readonly)
                 <div class="mt-6 border-[4px] border-current bg-[#FF6B6B] px-4 py-4 text-sm font-black uppercase">
-                    Admin sedang melihat reminder member secara readonly.
+                    Admin sedang melihat reminder member secara readonly
                 </div>
-            @elseif (! $canManageReminder)
+            @elseif (!$canManageReminder)
                 <div class="mt-6 border-[4px] border-current bg-[#FFD93D] px-4 py-4 text-sm font-black uppercase">
-                    Upgrade member type ke gold untuk mengaktifkan daily WhatsApp reminder.
+                    Upgrade member type ke gold untuk mengaktifkan daily WhatsApp reminder
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('reminder.update') }}" class="mt-6 space-y-5">
+            {{-- <form method="POST" action="{{ route('reminder.update') }}" class="mt-6 space-y-5">
                 @csrf
                 @method('PUT')
 
@@ -52,10 +54,10 @@
                 @if ($canManageReminder)
                     <button type="submit" class="brutal-btn">Save Reminder</button>
                 @endif
-            </form>
+            </form> --}}
         </section>
 
-        <section class="space-y-6">
+        {{-- <section class="space-y-6">
             <div class="brutal-panel-violet p-6">
                 <p class="text-xs font-black uppercase tracking-[0.22em]">Current Status</p>
                 <div class="mt-4 grid gap-4 sm:grid-cols-2">
@@ -86,6 +88,6 @@
                     @endforelse
                 </div>
             </div>
-        </section>
+        </section> --}}
     </div>
 </x-app-layout>
