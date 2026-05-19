@@ -11,7 +11,7 @@
             <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                 <div>
                     <p class="text-xs font-black uppercase tracking-[0.22em]">{{ $member->member_type }} member</p>
-                    <h2 class="mt-2 break-all text-4xl font-black uppercase">{{ $member->email }}</h2>
+                    <h2 class="mt-2 break-all text-2xl font-black uppercase sm:text-4xl">{{ $member->email }}</h2>
                     <p class="mt-3 text-sm font-bold uppercase">Joined {{ $member->created_at->format('d M Y') }}</p>
                 </div>
 
@@ -59,7 +59,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="brutal-ledger min-w-full">
+                <table class="brutal-ledger min-w-full" data-mobile-stack="true">
                     <thead>
                         <tr>
                             <th>Date</th>
@@ -72,11 +72,11 @@
                     <tbody>
                         @forelse ($cashFlows as $cashFlow)
                             <tr>
-                                <td class="text-sm font-bold uppercase">{{ $cashFlow->transaction_date->format('d M Y') }}</td>
-                                <td class="text-base font-black uppercase">{{ $cashFlow->description }}</td>
-                                <td class="text-sm font-bold uppercase">{{ $cashFlow->category?->name ?? '-' }}</td>
-                                <td class="text-sm font-black uppercase">{{ $cashFlow->type }}</td>
-                                <td class="text-right text-base font-black uppercase">
+                                <td class="text-sm font-bold uppercase" data-label="Date">{{ $cashFlow->transaction_date->format('d M Y') }}</td>
+                                <td class="text-base font-black uppercase" data-label="Description">{{ $cashFlow->description }}</td>
+                                <td class="text-sm font-bold uppercase" data-label="Category">{{ $cashFlow->category?->name ?? '-' }}</td>
+                                <td class="text-sm font-black uppercase" data-label="Type">{{ $cashFlow->type }}</td>
+                                <td class="text-right text-base font-black uppercase" data-label="Amount">
                                     {{ $cashFlow->type === 'income' ? '+' : '-' }} Rp{{ number_format($cashFlow->amount, 0, ',', '.') }}
                                 </td>
                             </tr>

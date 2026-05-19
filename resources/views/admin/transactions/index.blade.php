@@ -56,7 +56,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="brutal-ledger min-w-full" data-datatable="admin-transactions">
+                <table class="brutal-ledger min-w-full" data-datatable="admin-transactions" data-mobile-stack="true">
                     <thead>
                         <tr>
                             <th>Date</th>
@@ -70,15 +70,15 @@
                     <tbody>
                         @foreach ($cashFlows as $cashFlow)
                             <tr>
-                                <td class="text-sm font-bold uppercase" data-order="{{ $cashFlow->transaction_date->format('Y-m-d') }}">{{ $cashFlow->transaction_date->format('d M Y') }}</td>
-                                <td>
+                                <td class="text-sm font-bold uppercase" data-label="Date" data-order="{{ $cashFlow->transaction_date->format('Y-m-d') }}">{{ $cashFlow->transaction_date->format('d M Y') }}</td>
+                                <td data-label="Member">
                                     <p class="text-sm font-black uppercase">{{ $cashFlow->user?->name ?? '-' }}</p>
                                     <p class="text-xs font-bold">{{ $cashFlow->user?->email ?? '-' }}</p>
                                 </td>
-                                <td class="text-base font-black uppercase">{{ $cashFlow->description }}</td>
-                                <td class="text-sm font-bold uppercase">{{ $cashFlow->category?->name ?? '-' }}</td>
-                                <td class="text-sm font-black uppercase">{{ $cashFlow->type }}</td>
-                                <td class="text-right text-base font-black uppercase" data-order="{{ $cashFlow->type === 'income' ? $cashFlow->amount : -$cashFlow->amount }}">
+                                <td class="text-base font-black uppercase" data-label="Description">{{ $cashFlow->description }}</td>
+                                <td class="text-sm font-bold uppercase" data-label="Category">{{ $cashFlow->category?->name ?? '-' }}</td>
+                                <td class="text-sm font-black uppercase" data-label="Type">{{ $cashFlow->type }}</td>
+                                <td class="text-right text-base font-black uppercase" data-label="Amount" data-order="{{ $cashFlow->type === 'income' ? $cashFlow->amount : -$cashFlow->amount }}">
                                     {{ $cashFlow->type === 'income' ? '+' : '-' }} Rp{{ number_format($cashFlow->amount, 0, ',', '.') }}
                                 </td>
                             </tr>

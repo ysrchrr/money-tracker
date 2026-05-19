@@ -27,7 +27,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="brutal-ledger min-w-full" data-datatable="admin-members">
+                <table class="brutal-ledger min-w-full" data-datatable="admin-members" data-mobile-stack="true">
                     <thead>
                         <tr>
                             <th>Member</th>
@@ -42,25 +42,25 @@
                     <tbody>
                         @foreach ($members as $member)
                             <tr>
-                                <td>
+                                <td data-label="Member">
                                     <p class="text-base font-black uppercase">{{ $member->name }}</p>
                                     <p class="text-xs font-bold">{{ $member->email }}</p>
                                 </td>
-                                <td class="text-sm font-black uppercase">{{ $member->member_type }}</td>
-                                <td class="text-right text-sm font-black uppercase"
+                                <td class="text-sm font-black uppercase" data-label="Type">{{ $member->member_type }}</td>
+                                <td class="text-right text-sm font-black uppercase" data-label="Transactions"
                                     data-order="{{ $member->cash_flows_count }}">{{ $member->cash_flows_count }}</td>
-                                <td class="text-right text-sm font-black uppercase"
+                                <td class="text-right text-sm font-black uppercase" data-label="Income"
                                     data-order="{{ $member->total_income ?? 0 }}">
                                     Rp{{ number_format($member->total_income ?? 0, 0, ',', '.') }}</td>
-                                <td class="text-right text-sm font-black uppercase"
+                                <td class="text-right text-sm font-black uppercase" data-label="Expense"
                                     data-order="{{ $member->total_expense ?? 0 }}">
                                     Rp{{ number_format($member->total_expense ?? 0, 0, ',', '.') }}</td>
-                                <td class="text-sm font-bold uppercase"
+                                <td class="text-sm font-bold uppercase" data-label="Last Transaction"
                                     data-order="{{ $member->last_transaction_date ?? '' }}">
                                     {{ $member->last_transaction_date ? \Carbon\Carbon::parse($member->last_transaction_date)->format('d M Y') : '-' }}
                                 </td>
-                                <td>
-                                    <div class="flex justify-end gap-2">
+                                <td data-label="Action">
+                                    <div class="flex flex-wrap justify-end gap-2">
                                         <a href="{{ route('admin.members.show', $member) }}"
                                             class="brutal-btn brutal-btn-secondary px-3 py-2">Detail</a>
                                         <form method="POST"

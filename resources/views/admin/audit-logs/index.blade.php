@@ -31,7 +31,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="brutal-ledger min-w-full" data-datatable="audit-logs">
+                <table class="brutal-ledger min-w-full" data-datatable="audit-logs" data-mobile-stack="true">
                     <thead>
                         <tr>
                             <th>Time</th>
@@ -44,17 +44,17 @@
                     <tbody>
                         @foreach ($auditLogs as $log)
                             <tr>
-                                <td class="text-sm font-bold uppercase" data-order="{{ $log->created_at->format('Y-m-d H:i:s') }}">{{ $log->created_at->format('d M Y H:i') }}</td>
-                                <td class="text-sm font-black uppercase">{{ $log->action }}</td>
-                                <td>
+                                <td class="text-sm font-bold uppercase" data-label="Time" data-order="{{ $log->created_at->format('Y-m-d H:i:s') }}">{{ $log->created_at->format('d M Y H:i') }}</td>
+                                <td class="text-sm font-black uppercase" data-label="Action">{{ $log->action }}</td>
+                                <td data-label="Admin">
                                     <p class="text-sm font-black uppercase">{{ $log->admin?->name ?? '-' }}</p>
                                     <p class="text-xs font-bold">{{ $log->admin?->email ?? '-' }}</p>
                                 </td>
-                                <td>
+                                <td data-label="Target">
                                     <p class="text-sm font-black uppercase">{{ $log->targetUser?->name ?? '-' }}</p>
                                     <p class="text-xs font-bold">{{ $log->targetUser?->email ?? ($log->context['target_email'] ?? '-') }}</p>
                                 </td>
-                                <td class="text-sm font-bold">{{ $log->ip_address ?? '-' }}</td>
+                                <td class="text-sm font-bold" data-label="IP">{{ $log->ip_address ?? '-' }}</td>
                             </tr>
                         @endforeach
                     </tbody>

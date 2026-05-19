@@ -96,11 +96,11 @@
             <div class="space-y-6">
                 <header class="brutal-panel sticky top-3 z-30 p-4 sm:top-5 sm:p-5 lg:top-6">
                     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                        <div class="flex items-center justify-between gap-3 lg:hidden">
+                        <div class="flex items-start justify-between gap-3 lg:hidden">
                             <a href="{{ $homeRoute }}"
-                                class="inline-flex items-center gap-3 border-[4px] border-current bg-white px-3 py-2 text-black">
+                                class="inline-flex min-w-0 items-center gap-3 border-[4px] border-current bg-white px-3 py-2 text-black">
                                 <x-application-logo />
-                                <span class="text-sm font-black uppercase tracking-[0.24em]">Money Tracker</span>
+                                <span class="text-xs font-black uppercase tracking-[0.18em] sm:text-sm sm:tracking-[0.24em]">Money Tracker</span>
                             </a>
                             <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
                                 <i class="fa-solid fa-sun" data-theme-icon aria-hidden="true"></i>
@@ -122,13 +122,13 @@
                                 @isset($header)
                                     {{ $header }}
                                 @else
-                                    <h1 class="text-3xl font-black uppercase">Dashboard</h1>
+                                    <h1 class="text-2xl font-black uppercase sm:text-3xl">Dashboard</h1>
                                 @endisset
                             </div>
 
-                            <div class="flex items-center gap-3 self-start sm:self-auto">
+                            <div class="flex w-full flex-wrap items-center gap-3 self-start sm:w-auto sm:self-auto">
                                 <div
-                                    class="border-[4px] border-current bg-[#FFD93D] px-4 py-2 text-xs font-black uppercase tracking-[0.18em]">
+                                    class="border-[4px] border-current bg-[#FFD93D] px-4 py-2 text-[11px] font-black uppercase tracking-[0.14em] sm:text-xs sm:tracking-[0.18em]">
                                     {{ now()->format('d M Y') }}
                                 </div>
                                 <button type="button" class="theme-toggle hidden lg:inline-flex" data-theme-toggle
@@ -140,10 +140,10 @@
                     </div>
                 </header>
 
-                <nav class="flex gap-3 overflow-x-auto lg:hidden">
+                <nav class="brutal-mobile-nav flex gap-3 overflow-x-auto pb-1 lg:hidden">
                     @foreach ($navItems as $item)
                         <a href="{{ $item['url'] }}"
-                            class="inline-flex items-center gap-3 whitespace-nowrap border-[4px] border-current px-4 py-3 text-sm font-black uppercase tracking-[0.18em] {{ $item['active'] ? 'bg-[#FF6B6B]' : 'bg-white' }}">
+                            class="brutal-mobile-nav-item inline-flex items-center gap-3 whitespace-nowrap border-[4px] border-current px-4 py-3 text-sm font-black uppercase tracking-[0.14em] sm:tracking-[0.18em] {{ $item['active'] ? 'bg-[#FF6B6B]' : 'bg-white' }}">
                             <i class="{{ $item['icon'] }} w-5 text-center" aria-hidden="true"></i>
                             <span>{{ $item['label'] }}</span>
                         </a>

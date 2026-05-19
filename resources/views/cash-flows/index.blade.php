@@ -155,7 +155,7 @@
         </section>
 
         <section class="brutal-panel p-6">
-            <div class="mb-5 flex items-center justify-between gap-4">
+            <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <p class="text-xs font-black uppercase tracking-[0.22em]">Ledger</p>
                     <h2 class="mt-2 text-3xl font-black uppercase">Transactions</h2>
@@ -164,6 +164,7 @@
 
             <div class="overflow-x-auto">
                 <table class="brutal-ledger min-w-full" data-datatable="transactions" data-disable-sorting="true"
+                    data-mobile-stack="true"
                     data-full-border="true">
                     <thead>
                         <tr>
@@ -180,22 +181,23 @@
                     <tbody>
                         @foreach ($cashFlows as $cashFlow)
                             <tr>
-                                <td class="text-center text-sm font-bold uppercase"
+                                <td class="text-center text-sm font-bold uppercase" data-label="Date"
                                     data-order="{{ $cashFlow->transaction_date->format('Y-m-d') }}">
                                     {{ $cashFlow->transaction_date->format('d M Y') }}</td>
-                                <td class="text-base font-black uppercase">{{ $cashFlow->description }}</td>
-                                <td class="text-center text-sm font-bold uppercase">{{ $cashFlow->category?->name ?? '-' }}</td>
+                                <td class="text-base font-black uppercase" data-label="Description">{{ $cashFlow->description }}</td>
+                                <td class="text-center text-sm font-bold uppercase" data-label="Category">{{ $cashFlow->category?->name ?? '-' }}</td>
                                 <td
+                                    data-label="Type"
                                     class="text-center text-sm font-black uppercase {{ $cashFlow->type === 'expense' ? 'text-red-600' : 'text-green-600' }}">
                                     {{ $cashFlow->type }}
                                 </td>
-                                <td class="text-right text-base font-black uppercase"
+                                <td class="text-right text-base font-black uppercase" data-label="Amount"
                                     data-order="{{ $cashFlow->type === 'income' ? $cashFlow->amount : -$cashFlow->amount }}">
                                     Rp{{ number_format($cashFlow->amount, 0, ',', '.') }}
                                 </td>
                                 @if (!$readonly)
-                                    <td class="text-center">
-                                        <div class="flex justify-center gap-2">
+                                    <td class="text-center" data-label="Action">
+                                        <div class="flex flex-wrap justify-center gap-2">
                                             <a href="{{ route('cash-flows.index', array_merge(request()->query(), ['edit' => $cashFlow->id])) }}"
                                                 class="brutal-btn brutal-btn-secondary px-2 py-1.5 text-xs">Edit</a>
                                             <form method="POST"

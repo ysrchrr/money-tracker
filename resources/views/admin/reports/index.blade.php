@@ -49,7 +49,7 @@
             <div class="brutal-panel p-6">
                 <p class="text-xs font-black uppercase tracking-[0.22em]">Per Member</p>
                 <div class="mt-5 overflow-x-auto">
-                    <table class="brutal-ledger min-w-full" data-datatable="report-members">
+                    <table class="brutal-ledger min-w-full" data-datatable="report-members" data-mobile-stack="true">
                         <thead>
                             <tr>
                                 <th>Member</th>
@@ -61,13 +61,13 @@
                         <tbody>
                             @foreach ($memberComparison as $summary)
                                 <tr>
-                                    <td>
+                                    <td data-label="Member">
                                         <p class="text-sm font-black uppercase">{{ $summary['user']?->name ?? '-' }}</p>
                                         <p class="text-xs font-bold">{{ $summary['user']?->email ?? '-' }}</p>
                                     </td>
-                                    <td class="text-right text-sm font-black uppercase">Rp{{ number_format($summary['income'], 0, ',', '.') }}</td>
-                                    <td class="text-right text-sm font-black uppercase">Rp{{ number_format($summary['expense'], 0, ',', '.') }}</td>
-                                    <td class="text-right text-sm font-black uppercase">Rp{{ number_format($summary['net'], 0, ',', '.') }}</td>
+                                    <td class="text-right text-sm font-black uppercase" data-label="Income">Rp{{ number_format($summary['income'], 0, ',', '.') }}</td>
+                                    <td class="text-right text-sm font-black uppercase" data-label="Expense">Rp{{ number_format($summary['expense'], 0, ',', '.') }}</td>
+                                    <td class="text-right text-sm font-black uppercase" data-label="Net">Rp{{ number_format($summary['net'], 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

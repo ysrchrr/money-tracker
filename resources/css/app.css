@@ -110,6 +110,7 @@
         background: var(--surface);
         border: var(--border-strong);
         box-shadow: var(--shadow-md);
+        min-width: 0;
     }
 
     .brutal-panel-accent {
@@ -214,6 +215,21 @@
 
     .brutal-link:hover {
         text-decoration: underline;
+    }
+
+    .brutal-mobile-nav {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-snap-type: x proximity;
+    }
+
+    .brutal-mobile-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .brutal-mobile-nav-item {
+        scroll-snap-align: start;
+        flex-shrink: 0;
     }
 
     .brutal-stat {
@@ -414,6 +430,15 @@
     }
 
     @media (max-width: 640px) {
+        .brutal-btn,
+        .brutal-badge {
+            letter-spacing: 0.12em;
+        }
+
+        .headline-stroke {
+            -webkit-text-stroke: 2px var(--ink);
+        }
+
         div.dt-container .dt-layout-row,
         div.dt-container .dt-layout-start,
         div.dt-container .dt-layout-end {
@@ -426,6 +451,94 @@
             width: 100%;
             min-width: 0;
             margin: 0.5rem 0 0;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] {
+            border: 0;
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] thead {
+            display: none;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'],
+        .brutal-ledger[data-mobile-stack='true'] tbody,
+        .brutal-ledger[data-mobile-stack='true'] tr,
+        .brutal-ledger[data-mobile-stack='true'] td {
+            display: block;
+            width: 100%;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] tbody {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] tr {
+            border: var(--border-strong);
+            box-shadow: var(--shadow-sm);
+            background: var(--surface);
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.9rem 1rem;
+            border-bottom: 3px solid var(--ink);
+            text-align: right !important;
+            word-break: break-word;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td::before {
+            content: attr(data-label);
+            flex: 0 0 42%;
+            text-align: left;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] tbody tr:last-child td:last-child,
+        .brutal-ledger[data-mobile-stack='true'] tr td:last-child {
+            border-bottom: 0;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Action'],
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Aksi'] {
+            display: block;
+            text-align: left !important;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Action']::before,
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Aksi']::before {
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Action'] > div,
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Aksi'] > div {
+            justify-content: stretch;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Action'] .brutal-btn,
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Action'] form,
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Aksi'] .brutal-btn,
+        .brutal-ledger[data-mobile-stack='true'] td[data-label='Aksi'] form {
+            width: 100%;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td[colspan] {
+            display: block;
+            text-align: left !important;
+        }
+
+        .brutal-ledger[data-mobile-stack='true'] td[colspan]::before {
+            display: none;
         }
     }
 

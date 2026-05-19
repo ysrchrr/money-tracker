@@ -43,7 +43,7 @@
         <section class="brutal-panel-violet p-6">
             <p class="text-xs font-black uppercase tracking-[0.22em]">Category List</p>
             <div class="mt-5 overflow-x-auto">
-                <table class="brutal-ledger min-w-full" data-datatable="categories">
+                <table class="brutal-ledger min-w-full" data-datatable="categories" data-mobile-stack="true">
                     <thead>
                         <tr>
                             <th class="text-center">Category</th>
@@ -57,16 +57,16 @@
                     <tbody>
                         @foreach ($categories as $category)
                             <tr>
-                                <td class="text-2xl font-black uppercase">{{ $category->name }}</td>
-                                <td class="text-right text-base font-black uppercase" data-order="{{ $category->percentage }}">
+                                <td class="text-2xl font-black uppercase" data-label="Category">{{ $category->name }}</td>
+                                <td class="text-right text-base font-black uppercase" data-label="Must Saving" data-order="{{ $category->percentage }}">
                                     {{ rtrim(rtrim(number_format($category->percentage, 2, '.', ''), '0'), '.') }}%
                                 </td>
-                                <td class="text-right text-base font-black uppercase" data-order="{{ $category->cash_flows_count }}">
+                                <td class="text-right text-base font-black uppercase" data-label="Transactions" data-order="{{ $category->cash_flows_count }}">
                                     {{ $category->cash_flows_count }} transaksi
                                 </td>
                                 @if (! $readonly)
-                                    <td>
-                                        <div class="flex justify-end gap-2">
+                                    <td data-label="Action">
+                                        <div class="flex flex-wrap justify-end gap-2">
                                             <a href="{{ route('categories.index', ['edit' => $category->id]) }}" class="brutal-btn brutal-btn-secondary px-3 py-2">Edit</a>
                                             <form method="POST" action="{{ route('categories.destroy', $category) }}" data-confirm-delete data-confirm-title="Hapus category?" data-confirm-text="Category yang dihapus tidak bisa dikembalikan.">
                                                 @csrf

@@ -21,8 +21,8 @@
                     </div>
 
                     <div>
-                        <p class="headline-stroke text-4xl font-black uppercase leading-none sm:text-6xl">Net cash</p>
-                        <p class="mt-2 break-words text-5xl font-black uppercase leading-none sm:text-7xl xl:text-8xl">
+                        <p class="headline-stroke text-3xl font-black uppercase leading-none sm:text-6xl">Net cash</p>
+                        <p class="mt-2 break-words text-4xl font-black uppercase leading-none sm:text-7xl xl:text-8xl">
                             Rp{{ number_format($net, 0, ',', '.') }}
                         </p>
                     </div>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="overflow-x-auto">
-                <table class="brutal-ledger min-w-full">
+                <table class="brutal-ledger min-w-full" data-mobile-stack="true">
                     <thead>
                         <tr>
                             <th>Date</th>
@@ -105,12 +105,13 @@
                     <tbody>
                         @forelse ($recentTransactions as $transaction)
                             <tr>
-                                <td class="text-sm font-bold uppercase">
+                                <td class="text-sm font-bold uppercase" data-label="Date">
                                     {{ $transaction->transaction_date->format('d M Y') }}</td>
-                                <td class="text-base font-black uppercase">{{ $transaction->description }}</td>
-                                <td class="text-sm font-bold uppercase">{{ $transaction->category?->name ?? '-' }}</td>
-                                <td class="text-sm font-black uppercase">{{ $transaction->type }}</td>
+                                <td class="text-base font-black uppercase" data-label="Description">{{ $transaction->description }}</td>
+                                <td class="text-sm font-bold uppercase" data-label="Category">{{ $transaction->category?->name ?? '-' }}</td>
+                                <td class="text-sm font-black uppercase" data-label="Type">{{ $transaction->type }}</td>
                                 <td
+                                    data-label="Amount"
                                     class="text-right text-base font-black uppercase {{ $transaction->type === 'income' ? 'text-[#1F8A3B]' : 'text-[#C1121F]' }}">
                                     {{ $transaction->type === 'income' ? '+' : '-' }}
                                     Rp{{ number_format($transaction->amount, 0, ',', '.') }}
