@@ -79,6 +79,10 @@ const formatRupiahInput = (value) => {
     return new Intl.NumberFormat('id-ID').format(Number(digits));
 };
 
+const formatRupiah = (value) => {
+    return `Rp ${new Intl.NumberFormat('id-ID').format(Number(value || 0))}`;
+};
+
 const savedTheme = localStorage.getItem(storageKey);
 const preferredDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 const initialTheme = savedTheme || (preferredDark ? 'dark' : 'light');
@@ -148,6 +152,38 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', () => {
             input.value = formatRupiahInput(input.value);
         });
+    });
+
+    document.querySelectorAll('[data-gold-price-widget]').forEach((widget) => {
+        const url = widget.dataset.url;
+        const valueElement = widget.querySelector('[data-gold-price-value]');
+        const sourceElement = widget.querySelector('[data-gold-price-source]');
+
+        if (!url || !valueElement) {
+            return;
+        }
+
+        $.ajax({
+            url,
+            method: 'GET',
+            dataType: 'json',
+        })
+            .done((response) => {
+                if (!response || typeof response.price === 'undefined') {
+                    valueElement.textContent = 'Harga tidak tersedia';
+
+                    return;
+                }
+
+                valueElement.textContent = `${formatRupiah(response.price)} / ${response.unit || '0.01 gram'}`;
+
+                if (sourceElement && response.source) {
+                    sourceElement.textContent = `Sumber: ${response.source}`;
+                }
+            })
+            .fail(() => {
+                valueElement.textContent = 'Harga tidak tersedia';
+            });
     });
 });
 

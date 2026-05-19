@@ -84,13 +84,11 @@
             @endforeach
         </nav>
 
-        <div class="brutal-panel-violet p-4">
-            <p class="text-xs font-black uppercase tracking-[0.2em]">Signed in</p>
-            <p class="mt-2 text-xl font-black uppercase">{{ $currentUser?->name ?? 'Guest' }}</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-                <span class="brutal-badge bg-[#FFD93D]">{{ $currentUser?->role ?? '-' }}</span>
-                <span class="brutal-badge bg-[#7BD389]">{{ $currentUser?->member_type ?? '-' }}</span>
-            </div>
+        <div class="brutal-panel-violet p-4" data-gold-price-widget data-url="{{ route('gold-price.show') }}">
+            <p class="text-xs font-black uppercase tracking-[0.2em]">Current Gold Price</p>
+            <p class="mt-2 text-sm font-black uppercase" data-gold-price-value>Loading...</p>
+            <p class="mt-1 text-[11px] font-bold uppercase tracking-[0.12em] text-black/70" data-gold-price-source>
+                Sumber : Pegadaian</p>
         </div>
 
         {{-- @if ($readonlyMember)
@@ -102,7 +100,7 @@
         @endif --}}
     </div>
 
-    <div class="relative z-10 space-y-3">
+    <div class="relative z-10">
         @if ($readonlyMember)
             <form method="POST" action="{{ route('admin.impersonation.destroy') }}">
                 @csrf
@@ -112,18 +110,20 @@
                 </button>
             </form>
         @else
-            <a href="{{ route('profile.edit') }}"
-                class="flex items-center gap-3 border-[4px] border-current bg-white px-4 py-3 text-sm font-black uppercase tracking-[0.18em]">
-                <i class="fa-solid fa-user-gear w-5 text-center" aria-hidden="true"></i>
-                <span>Profile</span>
-            </a>
-        @endif
+            <div class="flex items-stretch gap-3">
+                <a href="{{ route('profile.edit') }}"
+                    class="flex flex-1 items-center justify-center border-[4px] border-current bg-white px-4 py-3 text-black"
+                    aria-label="Profile">
+                    <i class="fa-solid fa-user-gear text-base" aria-hidden="true"></i>
+                </a>
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit" class="brutal-btn w-full justify-center">
-                Log Out
-            </button>
-        </form>
+                <form method="POST" action="{{ route('logout') }}" class="flex-1">
+                    @csrf
+                    <button type="submit" class="brutal-btn w-full justify-center px-4 py-3" aria-label="Log Out">
+                        <i class="fa-solid fa-right-from-bracket text-base" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+        @endif
     </div>
 </aside>
